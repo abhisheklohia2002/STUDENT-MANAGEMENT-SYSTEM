@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #img {
+            height: 10vw;
+
+        }
+        section{
+            padding-left: 7.5vw;
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column: 20vw;
+           row-gap: 5vw
+           ;
+            
+
+        }
+        #div{
+            /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+             */
+             
+             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+             background: linear-gradient(to right,rgb(247, 162, 162),rgb(109, 109, 176));
+            text-align: center;
+            width: 23vw;
+            font-size: 1.5vw;
+            padding-top: 10px;
+            padding-bottom: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+       .p{
+            color: rgb(5, 44, 24);
+            margin-bottom: 1.5vw;
+            margin-top: 1vw;
+        }
+        #btn{
+            background-color: rgb(226, 63, 63);
+            width: 10vw;
+            margin: auto;
+            font-size: 1.8vw;
+            color: black;
+            margin-bottom: 15px;
+        }
+        #btn:hover{
+            background-color: tomato;
+            cursor: pointer;
+        }
+       
+      #count{
+        width: 2vw;
+        background-color: rgb(180, 214, 214);
+        font-size: 20px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #enter{
+        display: flex;
+        /* width: 20vw; */
+        background-color: rgb(121, 139, 139);
+        font-size: 22px;
+        text-align: center;
+        padding-left: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+        </style>
+
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+      <nav id="main_box">
+        <ul id="navbar">
+            <li><a id="active" href="homepage.html">Home</a></li>
+
+            <li><a href="fw18.html">FT WEB-18</a> </li>
+            <li><a href="fw17.html"> FT WEB-17</a></li>
+            <li><a href="fw16.html">FT WEB-16</a></li>
+        </ul>
+    </nav>
+    <div id="enter">Entry Number-<div id="count">0</div></div> 
+    <!-- <div id="box"> -->
+    <section>
+
+    </section>
+</body>
+
+</html>
+
+<script>
+    var Info = JSON.parse(localStorage.getItem("Info")) || [];
+    console.log(Info[0].inp5)
+var x = Info[0];
+
+
+    // if (Info[0].inp5 == "FT-WEB-18") {
+        displayData(Info);
+        function displayData(Info) {
+    // if (Info[0].inp5 == "FT-WEB-18") {
+       
+        var count = 0;
+        
+
+        Info.forEach(function (elem,index) {
+
+                var main_box = document.createElement("div");
+                main_box.setAttribute("id","div");
+
+                var img = document.createElement("img");
+                
+                var name = document.createElement("p");
+                name.setAttribute("class","p");
+
+                var Unit = document.createElement("p");
+                Unit.setAttribute("class","p");
+                
+
+                var role = document.createElement("p");
+                role.setAttribute("class","p");
+
+
+                var batch = document.createElement("p");
+                batch.setAttribute("class","p");
+
+
+var btn = document.createElement("p");
+btn.setAttribute("id","btn");
+
+btn.innerText = "Remove";
+btn.addEventListener("click",function(){
+    removeitem(elem,index);
+
+});
+
+              
+                console.log(elem.inp5);
+
+                if(elem.inp5 == "FT WEB-16"){
+                    count++;
+            document.getElementById("count").innerText=count;
+                    img.src = elem.inp4;
+                img.setAttribute("id", "img")
+                name.innerText = elem.inp1
+                Unit.innerText = elem.inp2;
+                role.innerText = elem.inp3;
+                batch.innerText = elem.inp5;
+                    main_box.append(img, name, Unit, role, batch,btn);
+                    document.querySelector("section").append(main_box);
+                }
+               
+
+
+
+            });
+
+
+
+        // }
+       
+    }
+  function  removeitem(elem,index){
+      count--;
+
+    document.getElementById("count").innerHTML=count;
+      
+      Info.splice(index,1);
+      localStorage.setItem("Info",JSON.stringify(Info));
+      window.location.reload();
+
+  }
+</script>

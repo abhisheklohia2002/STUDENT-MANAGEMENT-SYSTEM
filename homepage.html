@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      #count{
+        width: 2vw;
+        background-color: rgb(180, 214, 214);
+        font-size: 20px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #enter{
+        display: flex;
+        /* width: 20vw; */
+        background-color: rgb(121, 139, 139);
+        font-size: 22px;
+        text-align: center;
+        padding-left: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <nav id="main_box">
+        <ul id="navbar">
+            <li><a id="active" href="homepage.html">Home</a></li>
+
+            <li><a href="fw18.html">FT WEB-18</a> </li>
+            <li><a href="fw17.html"> FT WEB-17</a></li>
+            <li><a href="fw16.html">FT WEB-16</a></li>
+        </ul>
+    </nav>
+   <div id="enter">Entry Number-<div id="count">0</div></div> 
+    <div id="box">
+    
+      <form id="form">
+    
+        <label for="">Student Name</label><br />
+        
+        <input id="name" type="text" placeholder="Enter Student Name" /><br />
+        <label for="">Course </label><br />
+        <select id="Course">
+            <option value="">Select-</option>
+
+            <option value="FSD">FSD</option>
+            <option value="ASD">ASD</option>
+            <option value="DA">DA</option>
+            <option value="UI">UI/UX</option></select
+          ><br />
+        <label for="">Unit </label><br />
+
+          <select id="Unit">
+              <option value="">Select-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+
+
+            </select
+          ><br />
+
+
+
+        <label for="">Student Image</label><br />
+        <input id="image" type="text" placeholder="Enter Image URL" /><br />
+        <label for="">Batch </label><br />
+        <select id="batch">
+            <option value="">Select-</option>
+            <option value="FT-WEB-18">FT WEB-18</option>
+            
+          <option value="FT WEB-17">FT WEB-17</option>
+          <option value="FT WEB-16">FT WEB-16</option>
+          </select
+        ><br />
+      
+       
+     
+        <input type="submit" />
+      </form>
+     
+    </div>
+  </body>
+</html>
+<script>
+document.getElementById("form").addEventListener("submit",runprogram);
+
+var i = 0;
+
+function runprogram(){
+
+
+    event.preventDefault();
+    var name = form.name.value;
+    var Unit = form.Unit.value;
+    var Course = form.Course.value;
+    var img = form.image.value;
+    var batch = form.batch.value;
+var Info = JSON.parse(localStorage.getItem("Info")) || [] ;
+
+var obj = {
+    inp1 : name,
+    inp2 : Unit,
+    inp3: Course,
+    inp4: img,
+    inp5 : batch
+}
+
+Info.push(obj);
+
+if(obj.inp1 != "" && obj.inp2 != "" && obj.inp3 !="" && obj.inp4 != "" && obj.inp5 !="" ){
+   localStorage.setItem("Info",JSON.stringify(Info));
+   console.log(Info);
+   i++;
+   document.querySelector("#count").innerHTML = i;
+
+   
+}
+else{
+    alert("Something Went Wrong");
+
+}
+    
+}
+
+
+</script>
